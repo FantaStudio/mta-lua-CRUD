@@ -23,8 +23,8 @@ CRUD.enabled = true
 CRUD.page = 1
 
 CRUD.bg = {
-	x = (sw-576)/2,
-	y = (sh-528)/2,
+	x = (1920-576)/2,
+	y = (1080-528)/2,
 	w = 576,
 	h = 528,
 	color =  tocolor(55, 150, 199, 204)
@@ -249,7 +249,7 @@ local function drawElements()
 		local columnX = CRUD.grid.x
 		for columnNumber,column in ipairs(CRUD.grid.columns) do
 			--// Column Headers
-			dxDrawText(column[1], columnX*px, CRUD.grid.y, (columnX+column[2]*CRUD.grid.w)*px, CRUD.grid.y+CRUD.grid.titleH, CRUD.grid.textColor, 1, getFont("gilroyR",7), "center", "center", false, false, false, false, false)
+			dxDrawText(column[1], columnX*px, CRUD.grid.y*py, (columnX+column[2]*CRUD.grid.w)*px, (CRUD.grid.y+CRUD.grid.titleH)*py, CRUD.grid.textColor, 1, getFont("gilroyR",7), "center", "center", false, false, false, false, false)
 
 			if rowsCount then
 				for i = 1,rowsCount do
