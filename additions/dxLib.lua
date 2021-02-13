@@ -66,7 +66,7 @@ function edit:render()
 
 	--// Set render target for edit content
 	dxSetRenderTarget(self.renderTarget, true)
-	dxSetBlendMode("add")
+	dxSetBlendMode("overwrite")
 
 	--// Draw Edit text
 	if self.text ~= "" then
@@ -104,12 +104,13 @@ function edit:render()
 			if self.selected ~= true then
 				self:select()
 			end
+
 			local wSumm = 0
 			local letterI = 0;
 			for letter in utf8.gmatch(self.text,".") do
 				wSumm = wSumm + dxGetTextWidth(letter,1,self.font)
 				letterI = letterI + 1
-				if cursorX/px - self.pdX + self.scroll <= wSumm then
+				if cursorX/px - self.pdX + self.scroll <= wSumm/px then
 					self.carretIndex = letterI
 					return
 				end
@@ -174,7 +175,7 @@ function edit.create(x,y,w,h,color,text,textColor,placeholder,placeholderColor,E
 	newEdit.h = h
 	newEdit.pdX = x + w*newEdit.padding
 	newEdit.pdW = w - w*newEdit.padding*2
-	newEdit.renderTarget = dxCreateRenderTarget(newEdit.pdW,h,true)
+	newEdit.renderTarget = dxCreateRenderTarget(newEdit.pdW*px,h*py,true)
 
 	if color then
 		newEdit.color = color
