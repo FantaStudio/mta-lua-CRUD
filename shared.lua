@@ -9,7 +9,7 @@ dbConfig = { --// Database configuration
 }
 
 toggledKey = "L" --// Open/close button
-blockTime = 5000 --// Reuest block time in ms
+blockTime = 5000 --// Request block time in ms
 
 function isEventHandlerAdded( sEventName, pElementAttachedTo, func )
     if type( sEventName ) == 'string' and isElement( pElementAttachedTo ) and type( func ) == 'function' then
