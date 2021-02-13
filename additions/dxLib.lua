@@ -77,7 +77,7 @@ function edit:render()
 
 	--// Draw carret
 	if self.selected then
-		local selectedWidth = dxGetTextWidth(utf8.sub(self.text,0,self.carretIndex),1,self.font)
+		local selectedWidth = dxGetTextWidth(utf8.sub(self.text,0,self.carretIndex),1,self.font)/px
 		if selectedWidth+self.carretWidth >= self.pdW then
 			self.scroll = selectedWidth - self.pdW + self.carretWidth
 		else
@@ -100,22 +100,21 @@ function edit:render()
 		local cursorX,cursorY = mouseX*sw,mouseY*sh;
 
 		local selectionWidth = cursorX - self.pdX
-		if (cursorX > self.x and cursorX < self.x + self.w and cursorY > self.y and cursorY < self.y + self.h) then
+		if (cursorX > self.x*px and cursorX < (self.x + self.w)*px and cursorY > self.y*py and cursorY < (self.y + self.h)*py) then
 			if self.selected ~= true then
 				self:select()
 			end
-
 			local wSumm = 0
 			local letterI = 0;
 			for letter in utf8.gmatch(self.text,".") do
 				wSumm = wSumm + dxGetTextWidth(letter,1,self.font)
 				letterI = letterI + 1
-				if (cursorX - self.pdX) + self.scroll <= wSumm then
+				if cursorX/px - self.pdX + self.scroll <= wSumm then
 					self.carretIndex = letterI
 					return
 				end
 			end
-			if(cursorX > wSumm + self.pdX and self.selected) then 
+			if(cursorX/px > wSumm + self.pdX and self.selected) then 
 				self.carretIndex = utf8.len(self.text)
 			elseif self.selected then
 				self.carretIndex = 0
