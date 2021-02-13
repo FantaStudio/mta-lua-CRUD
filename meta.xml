@@ -1,0 +1,15 @@
+<meta>
+<oop>true</oop>
+<info author = "MindTerror" name='CRUD' version = "1.0.1" />
+<!-- Helps -->
+<script src='shared.lua' type='shared' cache='false' />
+<script src='additions/dxLib.lua' type='client' cache='false' />
+<!-- Core -->
+<script src='client.lua' type='client' cache='false' />
+<script src='server.lua' type='server' />
+<!-- Files -->
+<file src="files/arrow.png" />
+<file src="files/Gilroy-Regular.ttf" />
+<file src="files/Gilroy-Semibold.ttf" />
+<min_mta_version client ='1.5.7' server ='1.5.7' />
+</meta>
